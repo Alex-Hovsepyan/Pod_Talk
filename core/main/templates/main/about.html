@@ -1,0 +1,72 @@
+{% extends 'main/base.html' %}
+{% block body %}
+            <header class="site-header d-flex flex-column justify-content-center align-items-center">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-12 col-12 text-center">
+
+                            <h2 class="mb-0">{{ title_info.title2 }}</h2>
+                        </div>
+
+                    </div>
+                </div>
+            </header>
+            
+
+            <section class="about-section section-padding" id="section_2">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-8 col-12 mx-auto">
+                            <div class="pb-5 mb-5">
+                                <div class="section-title-wrap mb-4">
+                                    <h4 class="section-title">{{ about_page.title1 }}</h4>
+                                </div>
+
+                                <p>{{ about_page.text1 }}.</p>
+
+                                <p>{{ about_page.text2 }}.</p>
+
+                                <img src="{{ about_page.img.url }}" class="about-image mt-5 img-fluid" alt="">
+                            </div>
+                        </div>
+                    
+                        <div class="col-lg-12 col-12">
+                            <div class="section-title-wrap mb-5">
+                                <h4 class="section-title">{{ about_page.title2 }}</h4>
+                            </div>
+                        </div>
+                        {% for i in about_content %}
+                            <div class="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0">
+                                <div class="team-thumb bg-white shadow-lg">
+                                    <img src="{{ i.img.url }}" class="about-image img-fluid" alt="">
+
+                                    <div class="team-info">
+                                        <h4 class="mb-2">
+                                            {{ i.name }}
+                                            <img src="{{ i.symbol_img.url }}" class="verified-image img-fluid" alt="">
+                                        </h4>
+                                        {% for j in i.profession.split %}
+                                            <span class="badge">{{ j }}</span>
+                                        {% endfor %}
+                                    </div>
+
+                                    <div class="social-share">
+                                            <ul class="social-icon">
+                                                {% for l in i.social.split %}
+                                                    <li class="social-icon-item">
+                                                        <a href="#" class="social-icon-link bi-{{ l }}"></a>
+                                                    </li>
+                                                {% endfor %}
+                                            </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </section>
+        </main>
+{% endblock %}

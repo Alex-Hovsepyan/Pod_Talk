@@ -1,0 +1,162 @@
+{% extends 'main/base.html' %}            
+{% block body %}
+             <header class="site-header d-flex flex-column justify-content-center align-items-center">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-12 col-12 text-center">
+
+                            <h2 class="mb-0">{{ title_info.title4 }}</h2>
+                        </div>
+
+                    </div>
+                </div>
+            </header>
+
+
+            <section class="latest-podcast-section section-padding pb-0" id="section_2">
+                <div class="container">
+                    <div class="row justify-content-center">
+
+                        <div class="col-lg-10 col-12">
+                            <div class="section-title-wrap mb-5">
+                                <h4 class="section-title">{{ details_content.title1 }}</h4>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-12">
+                                    <div class="custom-block-icon-wrap">
+                                        <div class="custom-block-image-wrap custom-block-image-detail-page">
+                                            <img src="{{ details_content.img.url }}" class="custom-block-image img-fluid" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-9 col-12">
+                                    <div class="custom-block-info">
+                                        <div class="custom-block-top d-flex mb-1">
+                                            <small class="me-4">
+                                                <a href="#">
+                                                    <i class="bi-play"></i>
+                                                    {{ details_content.play }}
+                                                </a>
+                                            </small>
+
+                                            <small>
+                                                <i class="bi-clock-fill custom-icon"></i>
+                                                {{ details_content.minute }}
+                                            </small>
+
+                                            <small class="ms-auto"><span class="badge">{{ details_content.episode }}</span></small>
+                                        </div>
+
+                                        <h2 class="mb-2">{{ details_content.title2 }}</h2>
+
+                                        <p>{{ details_content.text1 }}</p>
+
+                                        <p>{{ details_content.text2 }}</p>
+
+                                        <p>{{ details_content.text3 }}</p>
+
+                                        <div class="profile-block profile-detail-block d-flex flex-wrap align-items-center mt-5">
+                                            <div class="d-flex mb-3 mb-lg-0 mb-md-0">
+                                                <img src="{{ details_content.user_img.url }}" class="profile-block-image img-fluid" alt="">
+
+                                                <p>
+                                                    {{ details_content.name }}
+                                                    <img src="{{ details_content.symbol_img.url }}" class="verified-image img-fluid" alt="">
+                                                    
+                                                </p>
+                                            </div>
+
+                                            <ul class="social-icon ms-lg-auto ms-md-auto">
+                                                {% for v in details_content.social.split %}
+                                                    <li class="social-icon-item">
+                                                        <a href="#" class="social-icon-link bi-{{ v }}"></a>
+                                                    </li>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+
+            <section class="related-podcast-section section-padding">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-12 col-12">
+                            <div class="section-title-wrap mb-5">
+                                <h4 class="section-title">{{ title_info.related_episodes }}</h4>
+                            </div>
+                        </div>
+
+                        {% for i in trending_episodes %}
+                            <div class="col-lg-4 col-12 mb-4 mb-lg-0">
+                                <div class="custom-block custom-block-full">
+                                    <div class="custom-block-image-wrap">
+                                        <a href="{% url 'detail-page' %}">
+                                            <img src="{{ i.img.url }}" class="custom-block-image img-fluid" alt="">
+                                        </a>
+                                    </div>
+
+                                    <div class="custom-block-info">
+                                        <h5 class="mb-2">
+                                            <a href="{% url 'detail-page' %}">
+                                                {{ i.title }}
+                                            </a>
+                                        </h5>
+
+                                        <div class="profile-block d-flex">
+                                            <img src="{{ i.user_img2.url }}" class="profile-block-image img-fluid" alt="">
+
+                                            <p>{{ i.name_profession }}
+                                                {% if i.check_btn %}
+                                                    <img src="{{ i.symbol_img.url }}" class="verified-image img-fluid" alt="">
+                                                {% else %}
+                                                    <img src="" class="verified-image img-fluid" alt="">
+                                                {% endif %}
+                                            </p>
+                                        </div>
+
+                                        <p class="mb-0">{{ i.text }}</p>
+
+                                        <div class="custom-block-bottom d-flex justify-content-between mt-3">
+                                            <a href="#" class="bi-headphones me-1">
+                                                <span>{{ i.airpods }}</span>
+                                            </a>
+
+                                            <a href="#" class="bi-heart me-1">
+                                                <span>{{ i.likes }}</span>
+                                            </a>
+
+                                            <a href="#" class="bi-chat me-1">
+                                                <span>{{ i.comments }}</span>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="social-share d-flex flex-column ms-auto">
+                                        <a href="#" class="badge ms-auto">
+                                            <i class="bi-heart"></i>
+                                        </a>
+
+                                        <a href="#" class="badge ms-auto">
+                                            <i class="bi-bookmark"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </section>
+        </main>
+{% endblock %}
